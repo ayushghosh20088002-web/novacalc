@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="A polished all-in-one calculator with scientific functions, history, unit conversion and percentage tools.">
+  <title>NovaCalc — All-in-One Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-theme="dark">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="NovaCalc home">
+      <span class="brand-mark">N</span>
+      <span>Nova<span class="brand-light">Calc</span><small>ALL-IN-ONE TOOLKIT</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="status-pill"><span class="status-dot"></span> Ready to calculate</span>
+      <button class="icon-button" id="themeToggle" aria-label="Switch to light theme" title="Switch theme">
+        <span id="themeIcon">☼</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">SMART TOOLS. ZERO FRICTION.</p>
+        <h1>Numbers, <span>made simple.</span></h1>
+        <p class="hero-copy">A powerful little toolkit for everyday maths, scientific calculations and quick conversions.</p>
+      </div>
+      <div class="hero-chip"><span class="sparkle">✦</span> Free · Fast · Private</div>
+    </section>
+
+    <nav class="tabs" aria-label="Calculator tools">
+      <button class="tab active" data-panel="calculator">⌗ <span>Calculator</span></button>
+      <button class="tab" data-panel="converter">⇄ <span>Unit converter</span></button>
+      <button class="tab" data-panel="percentage">％ <span>Percentage</span></button>
+      <button class="tab" data-panel="history">◷ <span>History</span><span class="history-count" id="historyCount">0</span></button>
+    </nav>
+
+    <section class="panel active" id="calculatorPanel">
+      <div class="calculator-layout">
+        <article class="glass-card calculator-card">
+          <div class="card-heading">
+            <div><p class="eyebrow">CALCULATOR</p><h2>Let's calculate</h2></div>
+            <div class="angle-switch" aria-label="Trigonometry angle mode">
+              <button class="angle-option active" id="degMode">DEG</button>
+              <button class="angle-option" id="radMode">RAD</button>
+            </div>
+          </div>
+          <div class="display" aria-live="polite">
+            <div class="expression" id="expression" aria-label="Expression">0</div>
+            <div class="display-bottom"><span id="displayHint">Ready for your next calculation</span><output id="result">0</output></div>
+          </div>
+          <div class="keypad" id="keypad">
+            <button class="key function" data-action="clear">AC</button>
+            <button class="key function" data-action="delete" aria-label="Delete last character">⌫</button>
+            <button class="key function" data-insert="(">(</button>
+            <button class="key function" data-insert=")">)</button>
+            <button class="key operator" data-insert="÷">÷</button>
+
+            <button class="key" data-insert="7">7</button><button class="key" data-insert="8">8</button><button class="key" data-insert="9">9</button>
+            <button class="key function" data-insert="sqrt(">√</button><button class="key operator" data-insert="×">×</button>
+
+            <button class="key" data-insert="4">4</button><button class="key" data-insert="5">5</button><button class="key" data-insert="6">6</button>
+            <button class="key function" data-insert="^2">x²</button><button class="key operator" data-insert="-">−</button>
+
+            <button class="key" data-insert="1">1</button><button class="key" data-insert="2">2</button><button class="key" data-insert="3">3</button>
+            <button class="key function" data-insert="^">xʸ</button><button class="key operator" data-insert="+">+</button>
+
+            <button class="key function" data-insert="sin(">sin</button><button class="key function" data-insert="cos(">cos</button>
+            <button class="key function" data-insert="tan(">tan</button><button class="key function" data-insert="log(">log</button>
+            <button class="key function" data-insert="ln(">ln</button>
+
+            <button class="key function" data-insert="π">π</button><button class="key function" data-insert="e">e</button>
+            <button class="key" data-insert="0">0</button><button class="key" data-insert=".">.</button>
+            <button class="key equals" data-action="equals">=</button>
+          </div>
+          <div class="calculator-footer"><span><kbd>Enter</kbd> calculate</span><span><kbd>Esc</kbd> clear</span><span><kbd>⌫</kbd> delete</span></div>
+        </article>
+
+        <aside class="side-column">
+          <article class="glass-card quick-card">
+            <div class="card-heading compact"><div><p class="eyebrow">QUICK ACCESS</p><h2>Useful constants</h2></div></div>
+            <div class="constant-list">
+              <button class="constant" data-constant="π"><span class="constant-symbol">π</span><span><b>Pi</b><small>3.14159265…</small></span><span class="constant-add">+</span></button>
+              <button class="constant" data-constant="e"><span class="constant-symbol">e</span><span><b>Euler's number</b><small>2.71828182…</small></span><span class="constant-add">+</span></button>
+              <button class="constant" data-constant="sqrt(2)"><span class="constant-symbol">√2</span><span><b>Square root of 2</b><small>1.41421356…</small></span><span class="constant-add">+</span></button>
+              <button class="constant" data-constant="^2"><span class="constant-symbol">x²</span><span><b>Square current value</b><small>Raise to power 2</small></span><span class="constant-add">+</span></button>
+            </div>
+          </article>
+          <article class="glass-card tip-card">
+            <span class="tip-icon">✦</span><p class="eyebrow">PRO TIP</p>
+            <h3>Type it your way.</h3>
+            <p>Use your keyboard for numbers and operators. Press <kbd>Enter</kbd> to get your answer instantly.</p>
+          </article>
+          <article class="mini-stat">
+            <span class="mini-stat-icon">◷</span><span><b id="miniHistoryCount">0 calculations</b><small>Your recent work stays in this session.</small></span>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+    <section class="panel" id="converterPanel">
+      <article class="glass-card tool-card">
+        <div class="card-heading"><div><p class="eyebrow">CONVERT WITH CONFIDENCE</p><h2>Unit converter</h2><p class="section-copy">Switch between common units in seconds.</p></div></div>
+        <div class="form-grid">
+          <label>Category<select id="unitCategory"><option value="length">Length</option><option value="weight">Weight / mass</option><option value="temperature">Temperature</option></select></label>
+          <label>From<select id="unitFrom"></select></label>
+          <label>To<select id="unitTo"></select></label>
+          <label>Value<input id="unitValue" type="number" value="1" step="any" inputmode="decimal"></label>
+        </div>
+        <button class="primary-button" id="convertButton">Convert units <span>→</span></button>
+        <div class="conversion-result"><span class="result-label">CONVERSION RESULT</span><strong id="conversionOutput">1 meter = 100 centimeters</strong><small id="conversionDetail">Enter a value and choose your units.</small></div>
+      </article>
+    </section>
+
+    <section class="panel" id="percentagePanel">
+      <article class="glass-card tool-card">
+        <div class="card-heading"><div><p class="eyebrow">PERCENTAGE TOOLS</p><h2>Make percentages easy</h2><p class="section-copy">Discounts, changes and ratios without the mental maths.</p></div></div>
+        <div class="percentage-grid">
+          <section class="subtool"><span class="subtool-number">01</span><h3>Find a percentage</h3><p>What is <b>X%</b> of a number?</p><label>Percentage (%)<input id="pctRate" type="number" value="20" step="any"></label><label>Number<input id="pctNumber" type="number" value="150" step="any"></label><div class="subtool-result" id="pctResult">20% of 150 = 30</div></section>
+          <section class="subtool"><span class="subtool-number">02</span><h3>Discount calculator</h3><p>Find your sale price and savings.</p><label>Original price<input id="discountPrice" type="number" value="1000" min="0" step="any"></label><label>Discount (%)<input id="discountRate" type="number" value="15" min="0" max="100" step="any"></label><div class="subtool-result" id="discountResult">Pay 850 · Save 150</div></section>
+          <section class="subtool"><span class="subtool-number">03</span><h3>Percentage change</h3><p>Compare an old value to a new one.</p><label>Old value<input id="oldValue" type="number" value="80" step="any"></label><label>New value<input id="newValue" type="number" value="100" step="any"></label><div class="subtool-result" id="changeResult">25% increase</div></section>
+          <section class="subtool"><span class="subtool-number">04</span><h3>Ratio calculator</h3><p>Compare two numbers as a ratio.</p><label>First value<input id="ratioA" type="number" value="12" step="any"></label><label>Second value<input id="ratioB" type="number" value="18" step="any"></label><div class="subtool-result" id="ratioResult">2 : 3</div></section>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" id="historyPanel">
+      <article class="glass-card tool-card">
+        <div class="card-heading"><div><p class="eyebrow">YOUR RECENT WORK</p><h2>Calculation history</h2><p class="section-copy">Reuse an expression or clear the list whenever you like.</p></div><button class="secondary-button" id="clearHistory">Clear history</button></div>
+        <div id="historyList" class="history-list"><div class="empty-state"><span>◷</span><b>No calculations yet</b><p>Your completed calculations will appear here.</p></div></div>
+      </article>
+    </section>
+
+    <footer class="footer"><span>© <span id="year"></span> NovaCalc</span><span>Made for curious minds <span class="footer-star">✦</span></span><span>Calculations run locally in your browser.</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
